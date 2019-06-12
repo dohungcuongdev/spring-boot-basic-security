@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue Axios Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="product in products">{{ product.name }}</li>
+        </ul>
+    </div>
+</body>
+<script>
+
+    new Vue({
+        el: '#app',
+        data: {
+            products: []
+        },
+        created() {
+
+            /*var configOauth = {
+                "headers": {
+                    "Authorization": 'Bearer' + 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NjAyNDQ5MDUsInVzZXJfbmFtZSI6IkN1b25nIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9TWVNURU1BRE1JTiJdLCJqdGkiOiIzYzkwN2Y1ZS01OGQyLTQ5MTItOGJiZS00NmFmZDUwNDE2ZDEiLCJjbGllbnRfaWQiOiJ0dXRvcmlhbHNwb2ludCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.OXTGyVLGq-jMPvTHbAWMhzo8n3o9OM9TmirMFN-9r4tUmjlYD-QtlbSqd7ev8Nnv8vvS8-meyhWJmMvzDUcgO5DFs0DilFm33LUbe3aNgabKdSNVrsH7ft5UagZ3Ew1H4w1aeLEMMWzDMusj54NilTkTzhvNk0OwtUURCIDrIjgfHh4xy0swLLzE3_WNwczmGJ8PuTionFwGROF34cQlxHdc2t51we0rNngyYwwKfCz1EMcxqnOC3nqEhQRVLq0_q_kyDdSHcbtmP7UIUtEqAaIig3lCKeok7FPx-ESh-bgjIZZeplRBH4ZWJYHPNIjfzK_9oqxNFhfwL-JwctTXpQ'
+                }
+            }
+
+            axios.get('http://localhost:9090/foods?limit=100', configOauth)
+                .then(function (response) {
+                    console.log(response);
+                    this.users = response
+                })
+            */
+
+            var configBasic = {
+                "headers": {
+                    "Authorization": "Basic " + 'Q3Vvbmc6MTIz'
+                }
+            }
+            let self = this;
+            axios.get('http://localhost:9090/products', configBasic)
+                .then(function (response) {
+                    console.log(response);
+                    self.products = response.data
+                    console.log(self.products);
+                })
+        }
+    })
+</script>
+
+</html>
