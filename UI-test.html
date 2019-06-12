@@ -22,6 +22,7 @@
             products: []
         },
         created() {
+            let self = this;
 
             /*var configOauth = {
                 "headers": {
@@ -32,7 +33,7 @@
             axios.get('http://localhost:9090/foods?limit=100', configOauth)
                 .then(function (response) {
                     console.log(response);
-                    this.users = response
+                    self.users = response
                 })
             */
 
@@ -41,13 +42,34 @@
                     "Authorization": "Basic " + 'Q3Vvbmc6MTIz'
                 }
             }
-            let self = this;
             axios.get('http://localhost:9090/products', configBasic)
                 .then(function (response) {
                     console.log(response);
                     self.products = response.data
                     console.log(self.products);
                 })
+            
+            configAuthForLoginSuccess = {
+                "username": "Cuong",
+                "password": "123"
+            }
+            axios.post('http://localhost:9090/login', configAuthForLoginSuccess)
+                .then(function (response) {
+                    console.log(response);
+                    self.products = response.data
+                    console.log(self.products);
+            })
+
+            configAuthForLoginWrong = {
+                "username": "Cuong",
+                "password": "1234"
+            }
+            axios.post('http://localhost:9090/login', configAuthForLoginWrong)
+                .then(function (response) {
+                    console.log(response);
+                    self.products = response.data
+                    console.log(self.products);
+            })
         }
     })
 </script>

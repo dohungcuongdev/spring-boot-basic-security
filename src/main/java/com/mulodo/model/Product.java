@@ -1,4 +1,4 @@
-package com.mulodo.websecurityapp;
+package com.mulodo.model;
 
 public class Product {
 
